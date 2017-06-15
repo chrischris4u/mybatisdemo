@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+		<settings>
+		<setting name="cacheEnabled" value="true" />
+		
+		<!-- 全局延迟加载开关 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		
+		<!-- 当启用时，有延迟加载属性的对象再被调用时将加载所有属性.否则，按调用部分加载 -->
+		<setting name="aggressiveLazyLoading" value="true" />
+		
+		<!-- 是否允许单挑sql返回多个数据集(取决于驱动的兼容性) -->
+		<setting name="multipleResultSetsEnabled" value="true" />
+		
+		<!-- 使用列标签代替列名称 -->
+		<setting name="useColumnLabel" value="true" /> 
+		
+		<!-- 允许JDBC生成主键 -->
+		<setting name="useGeneratedKeys" value="false" />
+		
+		<!-- 指定MyBati 如何自动映射数据基表的列  NONE:不映射 PARTIAL:部分映射  FULL:全部-->
+		<setting name="autoMappingBehavior" value="PARTIAL"/>
+		
+		<!-- 配置默认的执行器。SIMPLE 就是普通的执行器；REUSE 执行器会重用预处理语句（prepared statements）； BATCH 执行器将重用语句并执行批量更新。 -->
+		<setting name="defaultExecutorType" value="SIMPLE"/>
+		
+		<!-- 是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射。 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		
+		<!-- MyBatis 利用本地缓存机制（Local Cache）防止循环引用（circular references）和加速重复嵌套查询。 默认值为 SESSION，这种情况下会缓存一个会话中执行的所有查询。 若设置值为 STATEMENT，本地会话仅用在语句执行上，对相同 SqlSession 的不同调用将不会共享数据。 -->
+		<setting name="localCacheScope" value="SESSION"/>
+		
+		<!-- 	当没有为参数提供特定的 JDBC 类型时，为空值指定 JDBC 类型。 如(NULL VARCHAR OTHER) -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		
+	</settings>
+	
+</configuration>

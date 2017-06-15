@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"   
+        xsi:schemaLocation="  
+           http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      	   http://www.springframework.org/schema/tx 
+      	   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+      	   http://www.springframework.org/schema/mvc 
+      	   http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+      	   ">
+
+	<!-- proxy-target-class true 使用cglib动态代理 基于类  false jdk基于接口的代理 -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.ssharing.mybatisdemo" />
+		<property name="mapperLocations" value="classpath:mybatis/mapping/**/*.xml" />
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+	</bean>
+	
+	<!-- 扫描自定义dao注解的接口 -->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<property name="basePackage" value="om.ssharing.mybatisdemo.**.dao" />
+		<property name="annotationClass" value="com.ssharing.mybatisdemo.persistence.annotation.MyDao" />
+	</bean>
+	
+</beans>

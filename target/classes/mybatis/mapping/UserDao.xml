@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    
+    <mapper namespace="com.ssharing.mybatisdemo.sys.user.dao.UserDao">
+    	
+    	<resultMap type="com.ssharing.mybatisdemo.sys.user.entity.User" id="user">
+    		<id column="id" property="id" />
+    		<result column="name" property="name" />
+    		<result column="sex" property="sex" />
+    		<result column="address" property="address" />
+			<result column="tel" property="tel" />
+    	</resultMap>
+    	
+     	<select id="get"  resultType="user">
+    		SELECT 
+    			name,
+    			sex,
+    			address,
+    			tel
+    		FROM 
+    			t_sys_user
+    		WHERE
+    			id=#{id}
+    	</select> 
+    	
+    	<select id="countAll" resultType="java.lang.Integer">
+    		SELECT
+    			COUNT(1)
+    		FROM
+    			t_sys_user
+    	</select>
+     	
+    	<select id="findByName"  resultType="user">
+		    SELECT 
+    			name,
+    			sex,
+    			address,
+    			tel
+    		FROM 
+    			t_sys_user
+    		WHERE
+    			name=#{name}
+    	</select>
+    	
+    	<select id="findAll" resultMap="user">
+ 	    	SELECT 
+    			name,
+    			sex,
+    			address,
+    			tel
+    		FROM 
+    			t_sys_user
+    	</select>
+    	
+    	<update id="update" >
+    		UPDATE 
+    			t_sys_user
+    		SET
+    			name=#{name},
+    			sex=#{sex},
+    			address=#{address},
+    			tel=#{tel}
+    		WHERE
+    			id=#{id}
+    	</update>
+  
+    	<insert id="insert" >
+    		INSERT INTO
+    			t_sys_user
+    		(
+    			name,
+    			sex,
+    			address,
+    			tel
+    		)
+    		VALUES
+    		(
+    			#name,
+    			#sex,
+    			#address,
+    			#tel
+    		)
+	       <selectKey>
+     			select last_insert_id();
+     		</selectKey>
+    	</insert>
+ 
+    	<delete id="delete" >
+    		DELETE FROM
+    			t_sys_user
+   			WHERE
+   				id=#{id}
+    	</delete>
+    	 
+    </mapper>
