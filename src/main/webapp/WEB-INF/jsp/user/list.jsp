@@ -8,7 +8,8 @@
 <body>
 	<h3>当前共有${userlist.size()}名用户</h3>
 	<c:forEach items="${userlist}" var="u">
-		<a href="${u.name}" >${u.name}</a><br/><br/>
+		<a href="user/${u.name}" >${u.name}</a><br/><br/>
 	</c:forEach>
+	<a href="addOne">AddOne</a>
 </body>
 </html>

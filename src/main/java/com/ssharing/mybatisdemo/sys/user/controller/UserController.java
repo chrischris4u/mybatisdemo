@@ -26,10 +26,19 @@ public class UserController {
 		return "user/list";
 	}
 	
-	@RequestMapping(value="/{userName}", method=RequestMethod.GET)
+	@RequestMapping(value="/user/{userName}", method=RequestMethod.GET)
 	public String showUser(@PathVariable("userName") String name, Model model){
 		model.addAttribute( "userinfo", service.findByName(name));
 		return "user/user";
+	}
+	
+	@RequestMapping(value="/addOne", method=RequestMethod.GET)
+	public String addOne(Model model){
+		int count = service.countAll();
+		User nUser = new User(); 
+		nUser.setName("new" + count);
+		service.insert(nUser);
+		return "redirect:/";
 	}
 	
 }

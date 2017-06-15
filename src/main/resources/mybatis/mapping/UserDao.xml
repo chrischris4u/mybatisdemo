@@ -76,10 +76,10 @@
     		)
     		VALUES
     		(
-    			#name,
-    			#sex,
-    			#address,
-    			#tel
+    			#{name},
+    			#{sex},
+    			#{address},
+    			#{tel}
     		)
 	       <selectKey>
      			select last_insert_id();
